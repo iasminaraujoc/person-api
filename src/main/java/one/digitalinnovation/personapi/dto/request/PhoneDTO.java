@@ -8,6 +8,8 @@ import one.digitalinnovation.personapi.enums.PhoneType;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Data
 @Builder
@@ -20,7 +22,7 @@ public class PhoneDTO {
     @Enumerated(EnumType.STRING)
     private PhoneType type;
 
-    //@NotEmpty
-    //@Size(min=13, max = 14)
+    @NotEmpty
+    @Size(min=13, max = 14)
     private String number;
 }

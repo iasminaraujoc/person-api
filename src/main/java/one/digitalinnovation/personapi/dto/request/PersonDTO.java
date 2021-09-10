@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 import one.digitalinnovation.personapi.entity.Phone;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -19,20 +22,20 @@ public class PersonDTO {
     private Long id;
 
     @NotEmpty
-    //@Size(min=2,max = 100)
+    @Size(min=2,max = 100)
     private String firstName;
 
-    //@NotEmpty
-    //@Size(min=2,max = 100)
+    @NotEmpty
+    @Size(min=2,max = 100)
     private String lastName;
 
-    //@NotEmpty
+    @NotEmpty
     //@CPF
     private String cpf;
 
     private LocalDate birthDate;
 
-    //@Valid
-    //@NotEmpty
+    @Valid
+    @NotEmpty
     private List<PhoneDTO> phones;
 }
