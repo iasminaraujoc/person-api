@@ -11,7 +11,7 @@ import java.util.List;
 
 @Entity
 @Data                                //getter and setter
-@Builder
+@Builder                             //forma mais encapsulada
 @AllArgsConstructor
 @NoArgsConstructor
 public class Person {

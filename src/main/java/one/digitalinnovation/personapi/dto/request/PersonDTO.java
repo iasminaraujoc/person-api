@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import one.digitalinnovation.personapi.entity.Phone;
+import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
 import javax.validation.Valid;
@@ -30,7 +31,7 @@ public class PersonDTO {
     private String lastName;
 
     @NotEmpty
-    //@CPF
+    @CPF
     private String cpf;
 
     private LocalDate birthDate;

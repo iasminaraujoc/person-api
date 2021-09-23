@@ -1,7 +1,7 @@
 package one.digitalinnovation.personapi.service;
 
 import lombok.AllArgsConstructor;
-import one.digitalinnovation.personapi.dto.MessageResponseDTO;
+import one.digitalinnovation.personapi.dto.response.MessageResponseDTO;
 import one.digitalinnovation.personapi.dto.request.PersonDTO;
 import one.digitalinnovation.personapi.entity.Person;
 import one.digitalinnovation.personapi.exception.PersonNotFoundException;
@@ -19,12 +19,10 @@ import java.util.stream.Collectors;
 @Service
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class PersonService {
-   private PersonRepository personRepository;
+    private PersonRepository personRepository;
 
-   private final PersonMapper personMapper = PersonMapper.INSTANCE;
+    private final PersonMapper personMapper = PersonMapper.INSTANCE;
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
     public MessageResponseDTO createPerson(PersonDTO personDTO){
         Person personToSave = personMapper.toModel(personDTO);
         Person savedPerson = personRepository.save(personToSave);
@@ -44,11 +42,6 @@ public class PersonService {
         return personMapper.toDTO(person);
     }
 
-    private Person verifyIfExists(Long id) throws PersonNotFoundException {
-        return personRepository.findById(id)
-                .orElseThrow(() -> new PersonNotFoundException(id));
-    }
-
     public void delete(Long id) throws PersonNotFoundException {
        verifyIfExists(id);
        personRepository.deleteById(id);
@@ -64,5 +57,10 @@ public class PersonService {
     private MessageResponseDTO createMessageResponse(Long id, String message) {
         return MessageResponseDTO.builder().
                 message(message + id).build();
+    }
+
+    private Person verifyIfExists(Long id) throws PersonNotFoundException {
+        return personRepository.findById(id)
+                .orElseThrow(() -> new PersonNotFoundException(id));
     }
 }
